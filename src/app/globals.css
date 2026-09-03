@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf5;
+  --foreground: #1f1a17;
+  --brand: #e4572e;
+  --brand-dark: #c2431c;
+  --accent: #2a9d8f;
+  --muted: #6b625c;
+  --card: #ffffff;
+  --border: #f0e4da;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-border: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer components {
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-secondary {
+    @apply bg-white border border-border text-foreground hover:bg-orange-50;
+  }
+  .btn-whatsapp {
+    @apply bg-[#25D366] text-white hover:bg-[#1ebe5b];
+  }
+  .input {
+    @apply w-full rounded-xl border border-border bg-white px-3 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+  .label {
+    @apply block text-sm font-medium text-foreground mb-1;
+  }
+  .card {
+    @apply rounded-2xl bg-card border border-border shadow-sm;
+  }
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium border border-border bg-white;
+  }
+  .chip-active {
+    @apply bg-brand text-white border-brand;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold;
+  }
 }
